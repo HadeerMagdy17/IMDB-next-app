@@ -1,11 +1,15 @@
 import React from 'react'
-import NavbarItem from './NavbarItem'
+import dynamic from 'next/dynamic'
+
+const NavbarItemWithSuspense = dynamic(() => import('./NavbarItem'), {
+  ssr: false,
+});
 
 const Navbar = () => {
   return (
     <div className='py-4 flex justify-center gap-8 font-bold bg-amber-200 dark:bg-gray-600'>
-      <NavbarItem title="Trending" param="fetchTrending"/>
-      <NavbarItem  title="Top Rated" param="fetchTopRated"/>
+      <NavbarItemWithSuspense title="Trending" param="fetchTrending"/>
+      <NavbarItemWithSuspense title="Top Rated" param="fetchTopRated"/>
     </div>
   )
 }
